@@ -13,3 +13,7 @@ npm run dev
 La tienda funciona con catálogo local si Supabase aún no está configurado. Para activar persistencia, completa las variables de `.env.local` y ejecuta la migración de `supabase/migrations` en el SQL Editor.
 
 Para activar el checkout, usa un `MERCADOPAGO_ACCESS_TOKEN` de prueba y configura `NEXT_PUBLIC_SITE_URL` con la URL pública de la aplicación. En Vercel, carga las mismas variables en Project Settings → Environment Variables.
+
+## Demo estática
+
+GitHub Actions publica automáticamente una demostración en GitHub Pages. Esa variante incluye catálogo, productos y carrito, pero simula el paso de pago porque GitHub Pages no puede ejecutar los endpoints de Mercado Pago.

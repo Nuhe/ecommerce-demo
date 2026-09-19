@@ -6,6 +6,13 @@ import { ProductDetailActions } from "@/components/product-detail-actions";
 import { getProducts } from "@/lib/catalog";
 import { formatPrice } from "@/lib/products";
 
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.map((product) => ({ slug: product.slug }));
+}
+
+export const dynamicParams = false;
+
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const products = await getProducts();

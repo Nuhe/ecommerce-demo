@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { Product, products as fallbackProducts } from "./products";
+import { assetPath } from "./assets";
 
 export async function getProducts(): Promise<Product[]> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -23,7 +24,7 @@ export async function getProducts(): Promise<Product[]> {
       price: item.price,
       compareAtPrice: item.compare_at_price ?? undefined,
       category: item.category,
-      image: item.image,
+      image: assetPath(item.image),
       badge: item.badge ?? undefined,
       featured: item.featured,
       stock: item.stock,

@@ -14,6 +14,10 @@ export function CheckoutForm() {
   const shipping = total >= 75000 ? 0 : 6900;
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setLoading(true); setError("");
+    if (process.env.NEXT_PUBLIC_STATIC_DEMO === "true") {
+      window.location.href = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/checkout/pending/`;
+      return;
+    }
     const form = new FormData(event.currentTarget);
     try {
       const response = await fetch("/api/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: cart.map((line) => ({ id: line.product.id, quantity: line.quantity })), customer: Object.fromEntries(form) }) });
